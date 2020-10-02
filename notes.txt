@@ -1,0 +1,37 @@
+Aplicacion properties
+-> es el archivo que nos permite gestionar la configuracion del proyecto
+----> server.port cambia el puerto de ejecucion
+----> server.servlet.context-path cambia el context de la aplicacion link base
+----> spring.profiles.active para ver el entorno donde se esta trabajando
+        ejemplo: application-dev.properties. application-pdn.properties. despues de el - poner el entorno
+        este es un estandar ya que sera la palabra clave
+        el atributo que dejes en el properties principal se compartira para los demas perfiles
+
+
+
+
+---> estructura de capas orientada al dominio
+        Primera capa : dominio - donde tendremos DTO y objetos de dominio, los objetos de dominio son objetos que hacen parte del contexto de la aplicacion.
+                                "El cado de esta aplicacion es el contexto de un super mercado"
+                                Tembien en esta capa tendremos el servicio puente estre el controllador de la api y la capa de persistencia o el repositorio
+                                Tambien especificacion del repositorio es para cumplir la persistencia de los objetos de dominio y la base de datos
+        segunda capa: web  - donde estaran los controladores de nuestra api @Rescontroller
+
+        Capa de persistencia: capa  que se encarga de interactuar con la base de datos
+
+
+-----> JPA: es una especificacion de java para un framework ORM (Object relacional mapping) (mapeo objeto relacional)
+            interactua con tablas de base de datos en forma de objectos
+
+            Framework mas populares para este fin son * hibernet *EclipseLink *TopLink * ObjectDB
+            @Entity. Indica a una clase de java que esta representando una tabla de nuestra BD.
+            @Table. Recibe el nombre de la tabla a la cual esta mapeando la clase.
+            @column. Se le pone a los atributos de la clase, no es obligatoria, se indica sólo cuando el nombre de la columna es diferente al nombre del atributo de la tabla.
+            @id amd @EmbededID. Es el atributo como clave primaria de la tabla dentro de la clase. @id se utiliza cuando es clave primaria sencilla y @EmbededID cuando es una clave primaria compuesta.
+            @GeneratedValue. Permite generar automáticamente generar valores para las clases primarias en nuestras clases
+            @OneToMany and @MatyToOne. Representar relaciones
+
+Spring Data ---------> es un proyecto que internamente contiene otros, nosotros usaremos el Spring Data JPA
+                            ---> optimizacion de tareas repetitivas
+                            ---> Repositorio sin codigo con JPARepository, CrudRepository AND PaginAndSortingRepository
+                            ---> Auditorias transparentes
