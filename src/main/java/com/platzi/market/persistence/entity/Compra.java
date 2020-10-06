@@ -2,6 +2,7 @@ package com.platzi.market.persistence.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "compras")
@@ -24,6 +25,12 @@ public class Compra {
 
     private String estado;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente",updatable = false,insertable = false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "producto")
+    private List<ComprasProducto> productos;
     public Integer getIdCompra() {
         return idCompra;
     }
@@ -70,5 +77,9 @@ public class Compra {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 }
